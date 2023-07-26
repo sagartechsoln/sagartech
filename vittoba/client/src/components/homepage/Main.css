@@ -1,0 +1,183 @@
+
+
+.overlay {
+  background: #000000ab;
+  /* content: ""; */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+  top: 0px; }
+  @media  screen and (max-width:1024px) {
+    .overlay {
+      background: #00000093;
+      
+      top: 0px; }
+  }
+
+.react-slideshow-container .default-nav:last-of-type{
+  margin:50px;
+  border-radius: 10px;
+  padding:.8rem;
+}
+.react-slideshow-container .default-nav:first-of-type{
+  margin:50px;
+  border-radius: 10px;
+  
+}
+.react-slideshow-container .default-nav{
+ 
+  width:50px !important;
+  height:50px !important;
+}
+.slick-next:before  {
+  color:black !important;
+}
+.slick-prev:before{
+  color: black !important;
+}
+@keyframes bounce2 {
+  0%,
+  100% {
+    opacity:1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(.9);
+  }
+}
+@keyframes bounce2 {
+  0%,
+  100% {
+    opacity:1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(.9);
+  }
+}
+.bounce-animationslider {
+  animation: bounce2 3s infinite;
+}
+
+.animation-fade {
+  animation: fade 6s linear;
+}
+@media screen and (max-width:768px) {
+  .react-slideshow-container .default-nav:last-of-type{
+    margin:20px;
+    border-radius: 10px;
+    padding:.4rem;
+  }
+  .react-slideshow-container .default-nav:first-of-type{
+    margin:20px;
+    border-radius: 10px;
+    padding:.4rem;
+    
+  }
+  .react-slideshow-container .default-nav{
+   
+    width:40px !important;
+    height:40px !important;
+  }
+}
+@media screen and (max-width:640px) {
+  .react-slideshow-container .default-nav:last-of-type{
+    margin:15px;
+    border-radius: 5px;
+   
+  }
+  .react-slideshow-container .default-nav:first-of-type{
+    margin:15px;
+    border-radius: 5px;
+    
+  }
+  .react-slideshow-container .default-nav{
+   
+    width:30px !important;
+    height:30px !important;
+  }
+}
+
+
+
+/* ********************WELCOME TO VITTOBA */
+div.welcome-img {
+  position: relative;
+}
+
+div.welcome-img::before,
+div.welcome-img::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid black; /* Specify your desired border style */
+}
+
+div.welcome-img::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+div.welcome-img::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+/* ******************************PRODUCT SLIDER ************************************* */
+
+.slick-slide{
+
+  
+}
+.slick-arrow {
+  background:none !important;
+  
+}
+
+.slick-prev:before, .slick-next:before{
+  font-size: 35px !important;
+  
+}
+
+.slick-prev {
+  left: -40px !important;
+  
+}
+.slick-next{
+  right:-26px !important;
+} 
+@media screen and (max-width:640px) {
+  .slick-prev:before, .slick-next:before{
+    font-size: 25px !important;
+    
+  }
+  .slick-prev {
+    left: -20px !important;
+    
+  }
+  .slick-next{
+    right:-15px !important;
+  } 
+}
+/* ////////////about//////////////// */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(.9);
+  }
+}
+
+.bounce-animation {
+  animation: bounce 2s infinite;
+}
+

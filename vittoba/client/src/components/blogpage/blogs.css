@@ -1,0 +1,57 @@
+.zoom-container {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .zoom-container img {
+    transition: transform 1s ease;
+  }
+  
+  .zoom-container:hover img {
+    transform: scale(1.1);
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+    
+  
+  }
+
+  .page-btn {
+    cursor: pointer;
+    transition: all .3s linear;
+    padding:.7rem 1rem;
+    font-size:1rem;
+    margin:.5rem ;
+    background-color: white;
+    border:1px solid rgb(157, 153, 153);
+    border-radius: 7px;
+    
+  }
+
+  .active-btn {
+    color:black;
+    font-weight:bold;
+    background:rgb(246, 241, 241);
+    border:1px solid black;
+  }
+  
+  .next-btn {
+    
+    font-size:2.5rem;
+    padding: 0;
+    margin-left:.1rem;
+    margin-top:.3rem;
+    color:rgb(74, 72, 72);
+    background-color: bg-slate-100;
+    border:none;
+    cursor: pointer;
+    
+}
+  
+  .next-btn:hover {
+    color:blue;
+}
