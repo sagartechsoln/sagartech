@@ -105,7 +105,7 @@ const Ourproduct = () => {
     useEffect(() => {
         const callProducts = async () => {
             try {
-                const req = await fetch('/getAllProducts', {
+                const req =  await fetch('/api/getAllProducts', {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"

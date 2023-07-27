@@ -17,7 +17,7 @@ const EnquiryModal = ({ isOpen, onClose, bodyProduct }) => {
     useEffect(() => {
         const CallUserData = async () => {
             try {
-                const response = await fetch("/user_profile", {
+                const response =  await fetch("/api/user_profile", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
@@ -48,7 +48,7 @@ const EnquiryModal = ({ isOpen, onClose, bodyProduct }) => {
         // Clear form fields if needed
         const pid = bodyProduct._id
         if (showPasswordFields) {
-            const productEnquirySchema = await fetch('/productEnquirySchema', {
+            const productEnquirySchema =  await fetch('/api/productEnquirySchema', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -95,7 +95,7 @@ const EnquiryModal = ({ isOpen, onClose, bodyProduct }) => {
                 status = 'user'
                 userId = userData._id
             }
-            const productEnquirySchema = await fetch('/productEnquirySchema', {
+            const productEnquirySchema =  await fetch('/api/productEnquirySchema', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"

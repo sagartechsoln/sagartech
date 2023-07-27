@@ -71,7 +71,7 @@ const Product = () => {
         formData.append('index', i);
       });
     });
-    await fetch('/uploadProductImage', {
+     await fetch('/api/uploadProductImage', {
       method: 'POST',
       body: formData,
     })
@@ -181,7 +181,7 @@ const Product = () => {
   useEffect(() => {
     const callProducts = async () => {
       try {
-        const req = await fetch('/getAllProducts', {
+        const req =  await fetch('/api/getAllProducts', {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -220,7 +220,7 @@ const Product = () => {
 
     const callcategories = async () => {
       try {
-        const req = await fetch('/getAllcategories', {
+        const req =  await fetch('/api/getAllcategories', {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -262,7 +262,7 @@ const Product = () => {
     setSelectedKey(key);
     const callProducts = async () => {
       try {
-        const req = await fetch('/getAllProducts', {
+        const req =  await fetch('/api/getAllProducts', {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -322,7 +322,7 @@ const Product = () => {
     setDeleteModalVisible(false);
     const DeleteProduct = async () => {
       try {
-        const res = await fetch("/delete_product", {
+        const res =  await fetch("/api/delete_product", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -382,7 +382,7 @@ const Product = () => {
 
           const addProduct = async () => {
             try {
-              const res = await fetch("/add_product", {
+              const res =  await fetch("/api/add_product", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -418,7 +418,7 @@ const Product = () => {
           // Update Product Request 
           const updateProduct = async () => {
             try {
-              const res = await fetch("/update_product", {
+              const res =  await fetch("/api/update_product", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -480,7 +480,7 @@ const Product = () => {
   const handleDeleteProductImage = async (imageUrl, imageIndex) => {
     try {
       // Send a request to the backend to delete the image from MongoDB
-      const response = await fetch('/deleteProductImage', {
+      const response =  await fetch('/api/deleteProductImage', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

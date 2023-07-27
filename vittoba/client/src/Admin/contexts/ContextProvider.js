@@ -33,7 +33,7 @@ export const ContextProvider = ({ children }) => {
 
   const callUserData = async () => {
     try {
-      const response = await fetch('/admin_profile', {
+      const response =  await fetch('/api/admin_profile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

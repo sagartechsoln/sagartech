@@ -72,7 +72,7 @@ const Blog = ({ placeholder }) => {
                 formData.append('images', data);
             });
         });
-        await fetch('/uploadBlogsImage', {
+         await fetch('/api/uploadBlogsImage', {
             method: 'POST',
             body: formData,
         })
@@ -146,7 +146,7 @@ const Blog = ({ placeholder }) => {
     useEffect(() => {
         const callServices = async () => {
             try {
-                const req = await fetch('/getAllBlogs', {
+                const req =   await fetch('/api/getAllBlogs', {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
@@ -200,7 +200,7 @@ const Blog = ({ placeholder }) => {
         setSelectedKey(key);
         const callServices = async () => {
             try {
-                const req = await fetch('/getAllBlogs', {
+                const req =  await fetch('/api/getAllBlogs', {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
@@ -249,7 +249,7 @@ const Blog = ({ placeholder }) => {
         setDeleteModalVisible(false);
         const DeleteBlog = async () => {
             try {
-                const res = await fetch("/delete_blog", {
+                const res =  await fetch("/api/delete_blog", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -303,7 +303,7 @@ const Blog = ({ placeholder }) => {
 
                     const addBlog = async () => {
                         try {
-                            const res = await fetch("/add_blog", {
+                            const res =  await fetch("/api/add_blog", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"
@@ -338,7 +338,7 @@ const Blog = ({ placeholder }) => {
                     // Update Blog Request 
                     const updateBlog = async () => {
                         try {
-                            const res = await fetch("/update_blog", {
+                            const res =  await fetch("/api/update_blog", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"
@@ -399,7 +399,7 @@ const Blog = ({ placeholder }) => {
     const handleDeleteBlog = async (imageUrl) => {
         try {
           // Send a request to the backend to delete the image from MongoDB
-          const response = await fetch('/deleteBlogImage', {
+          const response =  await fetch('/api/deleteBlogImage', {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',

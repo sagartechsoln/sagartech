@@ -7,7 +7,7 @@ const EnquiryStatus = () => {
 
   useEffect(async () => {
     if (enquiryData===null) {
-      const response = await fetch("/getAllEnquiries", {
+      const response =  await fetch("/api/getAllEnquiries", {
         method: "GET",
         headers: {
           "Content-Type": "application/json"

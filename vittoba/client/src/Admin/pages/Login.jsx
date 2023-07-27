@@ -46,7 +46,7 @@ const Login = ({ token }) => {
 
         else {
             setloggingLoad(true)
-            const res = await fetch("/admin_login", {
+            const res =  await fetch("/api/admin_login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -91,7 +91,7 @@ const Login = ({ token }) => {
     const CallUserData = async () => {
         setpageLoad(true)
         try {
-            const response = await fetch("/admin_profile", {
+            const response =  await fetch("/api/admin_profile", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"

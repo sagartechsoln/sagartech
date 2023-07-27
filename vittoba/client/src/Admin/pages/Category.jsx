@@ -66,7 +66,7 @@ const Category = () => {
         formData.append('index', i);
       });
     });
-    await fetch('/uploadCategoryImage', {
+     await fetch('/api/uploadCategoryImage', {
       method: 'POST',
       body: formData,
     })
@@ -123,7 +123,7 @@ const Category = () => {
   useEffect(() => {
     const callcategories = async () => {
       try {
-        const req = await fetch('/getAllcategories', {
+        const req =  await fetch('/api/getAllcategories', {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -172,7 +172,7 @@ const Category = () => {
     setSelectedKey(key);
     const callcategories = async () => {
       try {
-        const req = await fetch('/getAllcategories', {
+        const req =  await fetch('/api/getAllcategories', {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -222,7 +222,7 @@ const Category = () => {
     setDeleteModalVisible(false);
     const DeleteCategory = async () => {
       try {
-        const res = await fetch("/delete_category", {
+        const res =  await fetch("/api/delete_category", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -279,7 +279,7 @@ const Category = () => {
 
           const addCategory = async () => {
             try {
-              const res = await fetch("/add_category", {
+              const res =  await fetch("/api/add_category", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -314,7 +314,7 @@ const Category = () => {
           // Update categorie Request 
           const updateCategory = async () => {
             try {
-              const res = await fetch("/update_category", {
+              const res =  await fetch("/api/update_category", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -374,7 +374,7 @@ const Category = () => {
   const handleCategoryImage = async (imageUrl) => {
     try {
       // Send a request to the backend to delete the image from MongoDB
-      const response = await fetch('/deleteCategoryImage', {
+      const response =  await fetch('/api/deleteCategoryImage', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -20,7 +20,7 @@ const Ourblogs = () => {
     const callBlogs = async () => {
         try {
             setblogLoading(true);
-            const req = await fetch('/getAllBlogs', {
+            const req =  await fetch('/api/getAllBlogs', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"

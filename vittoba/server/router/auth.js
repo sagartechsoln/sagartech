@@ -14,7 +14,7 @@ const userSchema = require("../models/users");
 const Blog = require("../models/blogSchema");
 
 // Admin Login Route 
-router.post("/admin_login", async (req, res) => {
+router.post("/api/admin_login", async (req, res) => {
   try {
     const { emailId, password } = req.body
 
@@ -43,18 +43,18 @@ router.post("/admin_login", async (req, res) => {
 })
 
 // Profile Page Router
-router.get("/admin_profile", pageAuth, (req, res) => {
+router.get("/api/admin_profile", pageAuth, (req, res) => {
   res.send(req.rootAdmin)
 })
 
 //Admin Logout
-router.get("/admin_logout", (req, res) => {
+router.get("/api/admin_logout", (req, res) => {
   res.cookie('vittobaAdminCookie', '', { expires: new Date(1) });
   res.send('Cookie cleared');
 })
 
 // Admin Update
-router.post('/admin_update', async (req, res) => {
+router.post('/api/admin_update', async (req, res) => {
   try {
     const { id, firstName, lastName, middleName, position, joined_this_position_on, status } = req.body
     let status_num = status==='Active' ? 1 : 0
@@ -73,7 +73,7 @@ router.post('/admin_update', async (req, res) => {
 })
 
 // Add Product
-router.post('/add_product', async (req, res) => {
+router.post('/api/add_product', async (req, res) => {
   // Creating a new Product
   try {
     const { product_name, category, color, description,  company, material, price, quantity, size, weight, cta, makeitfeatured } = req.body.values
@@ -95,7 +95,7 @@ router.post('/add_product', async (req, res) => {
 })
 
 // Update product
-router.post('/update_product', async (req, res) => {
+router.post('/api/update_product', async (req, res) => {
   // Creating a new product
   try {
     const { selectedKey } = req.body
@@ -115,7 +115,7 @@ router.post('/update_product', async (req, res) => {
 })
 
 // Delete Products
-router.post('/delete_product', async (req, res) => {
+router.post('/api/delete_product', async (req, res) => {
   try {
     const { selectedKey } = req.body
     ProductSchema.deleteOne({ _id: selectedKey }, (err) => {
@@ -129,7 +129,7 @@ router.post('/delete_product', async (req, res) => {
 })
 
 // get all Products list 
-router.get('/getAllProducts', (req, res) => {
+router.get('/api/getAllProducts', (req, res) => {
   try {
     ProductSchema.find({}, function (err, Products) {
       if (err) throw err;
@@ -163,7 +163,7 @@ const isImage = (req, file, callback) => {
 
 // Create the multer upload instance
 const upload = multer({ storage: imgconfig, fileFilter: isImage });
-router.post('/uploadProductImage', upload.array('images'), (req, res) => {
+router.post('/api/uploadProductImage', upload.array('images'), (req, res) => {
   const files = req.files;
   const { ids, index } = req.body;
   if (files && files.length > 1) {
@@ -193,7 +193,7 @@ router.post('/uploadProductImage', upload.array('images'), (req, res) => {
   }
 });
 
-router.delete('/deleteProductImage', async (req, res) => {
+router.delete('/api/deleteProductImage', async (req, res) => {
   const { imageUrl, selectedKey, imageIndex } = req.body;
   try {
     // Delete the image file from the folder
@@ -226,7 +226,7 @@ router.delete('/deleteProductImage', async (req, res) => {
 
 // ------------------------- Category AUTH ------------------------------- //
 // Add Category
-router.post('/add_category', async (req, res) => {
+router.post('/api/api/add_category', async (req, res) => {
   // Creating a new Category
   try {
     const { category_name } = req.body.values
@@ -248,7 +248,7 @@ router.post('/add_category', async (req, res) => {
 })
 
 // get all Category list 
-router.get('/getAllcategories', (req, res) => {
+router.get('/api/getAllcategories', (req, res) => {
   try {
     Category.find({}, function (err, Category) {
       if (err) throw err;
@@ -260,7 +260,7 @@ router.get('/getAllcategories', (req, res) => {
 })
 
 // Update category
-router.post('/update_category', async (req, res) => {
+router.post('/api/update_category', async (req, res) => {
   // Creating a new category
   try {
 
@@ -281,7 +281,7 @@ router.post('/update_category', async (req, res) => {
 })
 
 // Delete category
-router.post('/delete_category', async (req, res) => {
+router.post('/api/delete_category', async (req, res) => {
   try {
     const { selectedKey } = req.body
     Category.deleteOne({ _id: selectedKey }, (err) => {
@@ -316,7 +316,7 @@ const isImageCategpry = (req, file, callback) => {
 
 // Create the multer upload instance
 const uploadCategory = multer({ storage: imgconfigCategory, fileFilter: isImageCategpry });
-router.post('/uploadCategoryImage', uploadCategory.array('images'), (req, res) => {
+router.post('/api/uploadCategoryImage', uploadCategory.array('images'), (req, res) => {
   const files = req.files;
   const { ids } = req.body;
   Category.findByIdAndUpdate(ids, { imageCategory: files[0].filename }, (error) => {
@@ -329,7 +329,7 @@ router.post('/uploadCategoryImage', uploadCategory.array('images'), (req, res) =
   });
 });
 
-router.delete('/deleteCategoryImage', async (req, res) => {
+router.delete('/api/deleteCategoryImage', async (req, res) => {
   const { imageUrl, selectedKey } = req.body;
   
   try {
@@ -362,7 +362,7 @@ router.delete('/deleteCategoryImage', async (req, res) => {
   }
 });
 
-router.post("/productEnquirySchema", async (req, res) => {
+router.post("/api/productEnquirySchema", async (req, res) => {
   try {
     const { name, email, pid, productQuantity, description, status } = req.body;
 
@@ -396,7 +396,7 @@ router.post("/productEnquirySchema", async (req, res) => {
 });
 
 // Get ALL Enquires 
-router.get('/getAllEnquiries', (req, res) => {
+router.get('/api/getAllEnquiries', (req, res) => {
   try {
     enquirySchema.find({}, function (err, enquirySchema) {
       if (err) throw err;
@@ -410,7 +410,7 @@ router.get('/getAllEnquiries', (req, res) => {
 
 //------------- Blog Authentication  -------------------- //
 // Add Blog
-router.post('/add_blog', async (req, res) => {
+router.post('/api/add_blog', async (req, res) => {
   // Creating a new Blog
   try {
     const { title, tags } = req.body.values
@@ -431,7 +431,7 @@ router.post('/add_blog', async (req, res) => {
 })
 
 // Update blog
-router.post('/update_blog', async (req, res) => {
+router.post('/api/update_blog', async (req, res) => {
   // Creating a new blog
   try {
 
@@ -453,7 +453,7 @@ router.post('/update_blog', async (req, res) => {
 })
 
 // Delete Blog
-router.post('/delete_blog', async (req, res) => {
+router.post('/api/delete_blog', async (req, res) => {
   try {
     const { selectedKey } = req.body
     Blog.deleteOne({ _id: selectedKey }, (err) => {
@@ -467,7 +467,7 @@ router.post('/delete_blog', async (req, res) => {
 })
 
 // Get ALL Blog 
-router.get('/getAllBlogs', (req, res) => {
+router.get('/api/getAllBlogs', (req, res) => {
   try {
     Blog.find({}, function (err, Blog) {
       if (err) throw err;
@@ -500,7 +500,7 @@ const isImageBlog = (req, file, callback) => {
 
 // Create the multer upload instance
 const uploadBlogs = multer({ storage: imgconfigBlog, fileFilter: isImageBlog });
-router.post('/uploadBlogsImage', uploadBlogs.array('images'), (req, res) => {
+router.post('/api/uploadBlogsImage', uploadBlogs.array('images'), (req, res) => {
   const files = req.files;
   const { ids } = req.body;
   Blog.findByIdAndUpdate(ids, { image: files[0].filename }, (error) => {
@@ -513,7 +513,7 @@ router.post('/uploadBlogsImage', uploadBlogs.array('images'), (req, res) => {
   });
 });
 
-router.delete('/deleteBlogImage', async (req, res) => {
+router.delete('/api/deleteBlogImage', async (req, res) => {
   const { imageUrl, selectedKey, imageIndex } = req.body;
   try {
     // Delete the image file from the folder
@@ -544,7 +544,7 @@ router.delete('/deleteBlogImage', async (req, res) => {
   }
 });
 // ------------------------- USER AUTHENTICATION LOGICS ------------------- //
-router.post('/user_register', async (req, res) => {
+router.post('/api/user_register', async (req, res) => {
   try {
     const { name, email, password } = req.body
     const UserExists = await userSchema.findOne({ email: email });

@@ -38,7 +38,7 @@ export default function Profile() {
     const handleSaveClick = async () => {
         setIsEditing(false);
         console.log({id:admindata?.data._id, firstName, lastName, middleName, position, joined_this_position_on, status});
-        const res = await fetch("/admin_update", {
+        const res =  await fetch("/api/admin_update", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
