@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import EnquiryModal from '../Modals/Enquiry';
+import Breadcrumb from '../components/breadcrumb/Breadcrumb';
+import notfoundImg from "../images/image_not_available.png"
 
 const ProductDetail = () => {
     const location = useLocation();
@@ -51,37 +53,48 @@ const ProductDetail = () => {
                     {productFetched.product_name}
                 </title>
             </head>
+
             <section className="text-gray-700 body-font overflow-hidden">
+                <Breadcrumb title="Product Details" />
                 <div className="md:container py-4 px-4 mx-auto mb-14">
+
                     <div className="mx-auto mt-3 md:mt-16 flex flex-wrap">
                         <div className="lg:w-1/2 flex md:flex-row flex-col-reverse ">
                             <div className="flex flex-row md:flex-col gap-5 flex-wrap justify-center md:mt-0 mt-5">
                                 {/* Sub Images */}
                                 {['images0', 'images1', 'images2', 'images3', 'images4', 'images5'].map((imageKey, index) => (
                                     productFetched[imageKey] == '' ? null : (
-                                        <div className="w-32 md:w-full h-24 overflow-hidden bg-white" key={index}>
+                                        <div className="w-32 md:w-full h-24 overflow-hidden bg-white shadow-md" key={index}>
                                             <img
-                                                alt=""
+                                                alt={productFetched[imageKey] ? 'fff' : 'dummyimage'}
                                                 className="w-full h-full object-contain cursor-pointer object-center rounded border border-gray-200"
                                                 src={`/uploads/products/${productFetched[imageKey]}`}
                                                 onClick={() => handleImageClick(productFetched[imageKey])}
+                                                onError={(e) => {
+                                                    e.target.src = notfoundImg; // Replace '/path/to/dummy_image.jpg' with the actual URL of your dummy image.
+                                                    e.target.alt = 'dummyimage';
+                                                }}
                                             />
                                         </div>
                                     )
-                                ))}
+                                ))} 
                             </div>
 
                             {/* Main Image of Product */}
-                            <div className="w-full h-[350px] overflow-hidden md:ml-2 ml-0 bg-white">
+                            <div className="w-full h-[350px] overflow-hidden md:ml-5 ml-0 bg-white shadow-lg">
                                 <img
                                     alt="ecommerce"
-                                    className="object-contain object-center rounded border border-gray-200 w-full h-full"
+                                    className="object-contain p-2 object-center rounded border border-gray-200 w-full h-full shadow-lg"
                                     src={`/uploads/products/${mainImage}`}
+                                    onError={(e) => {
+                                        e.target.src = notfoundImg; // Replace '/path/to/dummy_image.jpg' with the actual URL of your dummy image.
+                                        e.target.alt = 'dummyimage'; // Set the alternative text to 'dummyimage'
+                                    }}
                                 />
                             </div>
                         </div>
                         <div className="lg:w-1/2 w-full lg:pl-10  lg:mt-0">
-                            <nav className="flex mt-10 md:mt-0" aria-label="Breadcrumb">
+                            {/* <nav className="flex mt-10 md:mt-0" aria-label="Breadcrumb">
                                 <ol className="inline-flex items-center space-x-1 md:space-x-3">
                                     <li className="inline-flex items-center">
                                         <Link to="/">
@@ -106,9 +119,9 @@ const ProductDetail = () => {
                                         </div>
                                     </li>
                                 </ol>
-                            </nav>
+                            </nav> */}
                             {/* <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2> */}
-                            <h1 className="text-gray-900 dark:text-gray-200 text-2xl md:text-3xl title-font font-medium mb-2 mt-7 md:mt-5">{productFetched.product_name}</h1>
+                            <h1 className="text-gray-900 dark:text-gray-200 text-2xl md:text-3xl title-font font-medium mb-2 mt-5 md:mt-2">{productFetched.product_name}</h1>
                             <div className="flex mb-4">
                                 <span className="flex items-center">
                                     <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
@@ -152,7 +165,7 @@ const ProductDetail = () => {
                             </div>
                             <div className="flex">
                                 <span className="title-font font-medium text-2xl text-gray-900"><span className=" text-gray-800 font-semibold">AED</span> {productFetched.price}</span>
-                                <button className={`flex ml-auto text-white ${productFetched.cta === "1" ? ' duration-200 bg-slate-900 hover:bg-slate-800' : 'bg-red-500 hover:bg-red-600'} border-0 py-2 px-6 focus:outline-none  rounded`}
+                                <button className={`flex ml-auto text-white ${productFetched.cta === "1" ? ' duration-300 bg-slate-900 hover:bg-slate-700' : 'bg-red-500 hover:bg-red-600'} border-0 py-2 px-6 focus:outline-none  rounded`}
                                     onClick={() => productFetched.cta === "1" ? handleOpenModal(productFetched) : ''}
                                 >{productFetched.cta === "1" ? 'Get Enquiry' : 'Add to Cart'}</button>
                                 {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">

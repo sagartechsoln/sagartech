@@ -5,7 +5,7 @@ import Ourproduct from './Ourproduct'
 const ProductPage = () => {
     return (
         <>
-            <Breadcrumb title="Product" />
+            <Breadcrumb title="Products" />
             <Ourproduct /> 
             {/* // Product Page */}
         </>

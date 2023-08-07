@@ -13,6 +13,8 @@ import about2 from "../../images/about-bottom.jpg"
 import backimg from "../../images/backimghome.png"
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import notfoundImg from "../../images/image_not_available.png"
+// import notfoundImg from "../../images/"
 
 const UserMain = () => {
   const navigate = useNavigate();
@@ -558,7 +560,7 @@ const UserMain = () => {
 
           {/* <img className="  " src={vlogo} alt="main-logo" /> */}
           {
-            showsection && <div ><h1 className=" md:text-2xl lg:text-3xl font-bold mb-4  ">Vittoba Computers Co.LLC</h1>
+            showsection && <div ><h1 className=" md:text-2xl lg:text-3xl font-bold mb-4 text-slate-950  ">Vittoba Computers Co.LLC</h1>
               <h1 className="md:text-sm lg:text-lg  font-light">
                 Vittoba LLC is a reputable company specializing in printer accessories and spare parts. They offer a comprehensive range of high-quality products for various printer models and brands. </h1></div>
           }
@@ -580,7 +582,7 @@ const UserMain = () => {
 
       <div className="flex flex-col lg:flex-row  my-8  items-center justify-around bg-slate-2 00">
         <div className=" w-4/5 lg:w-2/5 text-center">
-          <h1 className=" md:text-2xl lg:text-2xl font-bold">OUR TRUSTED BRANDS</h1>
+          <h1 className=" md:text-2xl lg:text-2xl font-bold text-slate-950">OUR TRUSTED BRANDS</h1>
           <h1 className=" md:text-2xl lg:text-2xl font-bold mt-0 md:mt-2"></h1>
           <p className="md:text-sm lg:text-xl  font-light mt-2 md:mt-4">We are selling top rated brand's products in our shops. Quality is our prime concern.</p>
         </div>
@@ -626,9 +628,9 @@ const UserMain = () => {
 
 
       {/* ******************************OUR PRODUCTS******************************** */}
-      <div className=" bg-slate-300 pt-6 my-10 md:my-18">
-        <h1 className="text-xl   sm:text-2xl md:text-4xl text-center pt-2 font-bold">FEATURED PRODUCTS</h1>
-        <div className="m-0 md:m-4 p-0 md:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
+      <div className=" bg-slate-200 pt-6 my-10 md:my-12 md:mb-0">
+        <h1 className="text-xl   sm:text-2xl md:text-4xl text-center pt-2 font-bold text-slate-900">FEATURED PRODUCTS</h1>
+        <div className="m-0 md:m-4 md:mb-0 p-0 md:p-4 md:pb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
 
           {Loading ? (
             'loading'
@@ -636,13 +638,22 @@ const UserMain = () => {
             data.slice(0, 6).map((item, i) => {
               if (item.makeitfeatured == '1') {
                 return <>
-                  <div key={i} onClick={() => handleProduct(item)} className="cursor-pointer">
-                    <div className=" bg-white  px-4 md:px-6 py-4 my-4 mx-4 ">
-                      <div className="w-full h-[250px] flex justify-center items-center">
-                        <img src={`/uploads/products/${item.images0}`} alt="singleproduct" className="object-cover mx-auto" />
+                  <div key={i} onClick={() => handleProduct(item)} className="cursor-pointer ">
+                    <div className=" bg-white  px-4 md:px-6 py-4 my-4 mx-4 shadow-lg">
+                      <div className="w-full h-[250px] flex justify-center items-center overflow-hidden ">
+                        {/* <img src={`/uploads/products/${item.images0}`} alt="singleproduct" className="object-cover mx-auto" /> */}
+                        <img
+        src={`/uploads/products/${item.images0}`}
+        alt="singleproduct"
+        className={` object-cover mx-auto ${item.images0 ? 'w-[240px]' : ''}`}
+        onError={(e) => {
+            e.target.src = notfoundImg; // Replace '/path/to/dummy_image.jpg' with the actual URL of your dummy image.
+            e.target.alt = 'dummyproduct'; // Set the alternative text to 'dummyproduct' when the dummy image is displayed.
+        }}
+    />
                       </div>
-                      <h1 className=" text-lg md:text-2xl font-bold text-center my-2 line-clamp-1">{item.product_name}</h1>
-                      <p className=" text-sm md:text-lg line-clamp-3 text-center">{item.description}</p>
+                      <h1 className=" text-[1.25rem] font-bold text-center my-3 line-clamp-1">{item.product_name}</h1>
+                      <p className="  text-lg line-clamp-3 text-center">{item.description}</p>
                     </div>
                   </div>
                 </>
@@ -682,8 +693,8 @@ const UserMain = () => {
 
       {/* ***********************************************OUR BLOGS ************************************************ */}
 
-      <div className=" bg-slate-300 py-6  my-10 mb-0 md:my-18 md:mb-0 ">
-        <h1 className="text-3xl md:text-4xl text-center pt-2 font-bold">OUR BLOGS</h1>
+      <div className=" bg-slate-200 py-6  my-10 mb-0 md:my-18 md:mb-0 mt-0 pt-12 ">
+        <h1 className="text-3xl md:text-4xl text-center pt-2 font-bold text-slate-900">OUR BLOGS</h1>
         <div className="m-4 sm:m-10 p-2 sm:p-4 mt-2  ">
           <Slider {...settings} >
             {
@@ -691,7 +702,7 @@ const UserMain = () => {
                 const { title, content, image } = singleproduct
                 return (
                   <div key={index} >
-                    <div className=" bg-white  px-6 py-4 mx-4 h-[420px] md:h-[600px]">
+                    <div className=" bg-white  px-6 py-4 mx-4 h-[420px] md:h-[600px] shadow-lg">
                       <div className="w-full h-[200px] md:h-[300px] overflow-hidden">
                         <img src={`/uploads/blog/${image}`} alt="singleproduct" className="object-cover w-full h-full" />
                       </div>

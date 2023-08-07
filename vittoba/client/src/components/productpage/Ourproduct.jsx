@@ -4,6 +4,7 @@ import { FaChevronRight } from 'react-icons/fa';
 import { RiCloseLine } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import notfoundImg from "../../images/image_not_available.png"
 
 const Ourproduct = () => {
     const navigate = useNavigate();
@@ -105,7 +106,7 @@ const Ourproduct = () => {
     useEffect(() => {
         const callProducts = async () => {
             try {
-                const req =  await fetch('/api/getAllProducts', {
+                const req = await fetch('/api/getAllProducts', {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
@@ -137,10 +138,10 @@ const Ourproduct = () => {
             // Trim spaces from the front and back of the item.company
             const trimmedItemCompany = item?.category?.trim();
             console.log(trimmedItemCompany);
-            
+
             return trimmedItemCompany === trimmedCompanyName;
         });
-    
+
         setFiltered(filteredCompanies);
         setShowbrands(false);
         setBrand(trimmedCompanyName); // Set the trimmed company name as the brand
@@ -370,29 +371,38 @@ const Ourproduct = () => {
 
                 </div>
                 <div className='m-0 md:m-4 p-0 md:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
-    {Loading ? (
-        'loading'
-    ) : (
-        getPaginatedItems().length > 0 ? (
-            getPaginatedItems().map((item, i) => {
-                return (     
-                    <div key={i} onClick={() => handleProduct(item)} className="cursor-pointer">
-                        <div className="bg-white px-4 md:px-6 py-4 my-4 mx-4">
-                            <div className="w-full h-[250px] flex justify-center items-center overflow-hidden">
-                                <img src={`/uploads/products/${item.images0}`} alt="singleproduct" className="object-cover mx-auto " />
-                            </div>
-                            <h1 className="text-[1.35rem] font-bold text-center my-3 line-clamp-1">{item.product_name}</h1>
-                            <p className="text-base md:text-lg line-clamp-3 text-center">{item.description}</p>
-                        </div>
-                    </div>
-                );
-            })
-        ) : (
-            <p className='font-bold text-3xl text-gray-500'>NO PRODUCT FOUND.</p>
-        )
-    )}
-</div>
-{/* ffffffffff */}
+                    {Loading ? (
+                        'loading'
+                    ) : (
+                        getPaginatedItems().length > 0 ? (
+                            getPaginatedItems().map((item, i) => {
+                                console.log(item.images0)
+                                return (
+                                    <div key={i} onClick={() => handleProduct(item)} className="cursor-pointer">
+                                        <div className="bg-white px-4 md:px-3 py-2 my-5 mx-4 shadow-lg">
+                                            <div className="w-full h-[250px] flex justify-center items-center overflow-hidden ">
+                                                <img
+                                                    src={`/uploads/products/${item.images0}`}
+                                                    alt={item.images0 ? 'singleproduct' : 'dummyimage'}
+                                                    className={`object-cover mx-auto ${item.images0 ? 'w-[240px]' : ''}`}
+                                                    onError={(e) => {
+                                                        e.target.onerror = null; // Prevents infinite loop in case the dummy image also fails to load
+                                                        e.target.src = notfoundImg; // Display the dummy image on error
+                                                    }}
+                                                />
+                                            </div>
+                                            <h1 className="text-[1.25rem] font-bold text-center my-3 line-clamp-1 ">{item.product_name}</h1>
+                                            <p className="text-lg  line-clamp-3 text-center mb-2">{item.description}</p>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        ) : (
+                            <p className='font-bold text-3xl text-gray-500'>NO PRODUCT FOUND.</p>
+                        )
+                    )}
+                </div>
+               
 
                 <div className="md:container md:mx-auto">
                     {/* ...other JSX code */}
