@@ -120,13 +120,15 @@ const App = () => {
                   </>
                   :
                   <>
+                  <Suspense fallback={<div>Loading...</div>}>
                     <Routes>
                       <Route path="/Admin/Login" element={(<Login />)} />
                       <Route path="/Admin/Logout" element={(<Logout />)} />
 
                     </Routes>
-
+                  </Suspense>
                   </>
+
               }
             </>
         }</div>
